@@ -1,0 +1,22 @@
+/* .main-container-siderbar-and-topbar {
+  border-right: 1px solid #12715b;
+  position: fixed;
+  transition: width 0.3s ease;
+  width: 13%;
+  width: var(--sidebar-width-margin);
+  z-index: 999;
+}
+@media screen and (min-width: 992px) {
+  .main-container-siderbar-and-topbar .sidebar-div {
+    display: grid;
+    height: 100vh;
+  }
+}
+.right-side-container {
+  margin-left: 13%;
+  margin-left: var(--sidebar-width-margin);
+  max-width: 87%;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+} */

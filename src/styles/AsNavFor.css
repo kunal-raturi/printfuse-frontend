@@ -1,0 +1,30 @@
+.nav-slick-in-productdetail .slick-next,
+.nav-slick-in-productdetail .slick-prev {
+  border-radius: 0;
+  height: 95%;
+  top: 0;
+  transform: translate(0);
+  transition: 0.3s;
+}
+
+.nav-slick-in-productdetail .slick-next,
+.nav-slick-in-productdetail .slick-prev {
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  z-index: 99;
+  /* border-radius: 0;
+  height: 95%;
+  top: 0;
+  transform: translate(0);
+  transition: 0.3s; */
+}
+.nav-slick-in-productdetail .slick-prev {
+  left: 0;
+}
+
+.nav-slick-in-productdetail .slick-prev:hover {
+  opacity: 1;
+}

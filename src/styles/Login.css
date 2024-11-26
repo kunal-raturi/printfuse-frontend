@@ -1,0 +1,139 @@
+.guy-using-phone {
+  background-image: url("/public/asset/images/signInImageBoy.webp");
+  background-position: 50%;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 50%;
+  z-index: -2;
+}
+@media screen and (max-width: 576px) {
+  .guy-using-phone {
+    height: 43%;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .guy-using-phone {
+    height: 48%;
+  }
+}
+
+.guy-bg-color {
+  background-image: linear-gradient(0deg, #00000080, #0000);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+.anchor-div-1 {
+  aspect-ratio: 3 / 1;
+  background-color: #ffffffbf;
+  border-radius: 0.55rem;
+  height: 50px;
+  overflow: hidden;
+  transition: 0.1s;
+}
+
+.font-decoration-signin {
+  color: #fff;
+  letter-spacing: 0.5px;
+  line-height: 1.5rem;
+  font-weight: 600 !important;
+}
+@media (max-width: 768px) {
+  .font-decoration-signin {
+    font-size: 18px;
+  }
+}
+@media (max-width: 576px) {
+  .font-decoration-signin {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 576px) {
+  .left-side-holder {
+    max-width: 576px;
+  }
+}
+
+.logo-div {
+  transform: translate(-50%, 100%);
+}
+/* .logo-div:hover {
+  transform: scale(1.1);
+} */
+.logo-div .anchor-div {
+  aspect-ratio: "3 / 1";
+  border-radius: 0.55rem;
+  height: 60px;
+  overflow: hidden;
+  transition: 0.1s;
+  width: 100%;
+}
+
+.left-side-holder .icon-in-sign .first {
+  left: 0vw;
+  top: 20vh;
+  transform: rotate(-15deg);
+  font-size: 3rem;
+  position: absolute;
+}
+
+.left-side-holder .icon-in-sign .second {
+  right: 0vw;
+  top: 20vh;
+  transform: rotate(15deg);
+  position: absolute;
+  font-size: 2rem;
+}
+
+.left-side-holder .icon-in-sign .third {
+  bottom: 20vh;
+  right: 0vw;
+  font-size: 3rem;
+  transform: rotate(15deg);
+  position: absolute;
+}
+
+.left-side-holder .icon-in-sign .fourth {
+  bottom: 20vh;
+  left: 0vw;
+  transform: rotate(-15deg);
+  font-size: 2rem;
+  position: absolute;
+}
+@media screen and (max-width: 768px) {
+  .left-side-holder .icon-in-sign .first {
+    left: 0vw;
+    top: 29vh;
+  }
+  .left-side-holder .icon-in-sign .second {
+    right: v0w;
+    top: 29vh;
+  }
+  .left-side-holder .icon-in-sign .third {
+    bottom: 29vh;
+    right: 0vw;
+  }
+
+  .left-side-holder .icon-in-sign .fourth {
+    bottom: 29vh;
+    left: 0vw;
+  }
+}
+
+.left-side-holder .submit-button .button {
+  background-color: #12715b;
+  border: 3px solid #12715b;
+  padding: 0.55rem 1rem !important;
+}
+.left-side-holder .submit-button .button:hover {
+  background-color: white;
+  color: #12715b;
+  border: 3px solid #12715b;
+}

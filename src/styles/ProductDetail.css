@@ -1,0 +1,15 @@
+.custom-header {
+  background-color: #dadada;
+}
+
+.custom-header .custom-btns a {
+  background-color: #12715b;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 0.25rem;
+  border: 3px solid #12715b;
+  transition: 0.3s;
+}

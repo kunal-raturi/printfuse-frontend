@@ -1,0 +1,16 @@
+.search-product {
+  border: 1px solid #e3e4e5;
+  border-radius: 1.5rem;
+  background-color: #ffffff;
+}
+
+.search-product .button {
+  background-color: #12715b;
+  border-radius: 0 25px 25px 0;
+  border: 1px solid #12715b;
+}
+
+.search-product input:focus {
+  outline: none;
+  box-shadow: none;
+}

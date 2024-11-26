@@ -1,0 +1,41 @@
+@media (min-width: 992px) {
+  .px-lg-10 {
+    padding-right: 5rem !important;
+    padding-left: 5rem !important;
+  }
+}
+
+.store-setting {
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+.store-setting .store-btn {
+  text-decoration: none;
+  transition: 0.3s;
+  border: 3px solid #12715b;
+  background-color: transparent;
+  color: #12715b;
+  padding: 0.25rem 1rem;
+}
+
+.store-setting .store-tab-container {
+  background-color: #ffffff;
+  border: 1px solid #e3e4e5;
+  border-radius: 0.5rem;
+}
+.store-setting .store-tab-container .nav-fill .nav-item .nav-link {
+  color: #12715b;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.store-setting .store-tab-container .nav-fill .nav-item .nav-link.active {
+  background-color: #12715b;
+  color: #ffffff;
+}
+
+/* custom-store-detail---------------------------- */
+.custom-contain-align-center {
+  background-color: #f7f7f7;
+  border-radius: 1rem;
+}
