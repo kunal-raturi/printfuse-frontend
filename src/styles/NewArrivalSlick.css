@@ -16,3 +16,15 @@
   align-items: center;
   background-color: #f8f8f8;
 }
+
+.new-arrival-slick .card:hover {
+  background-color: rgb(244, 248, 250);
+}
+
+.new-arrival-slick .card:hover .list-group {
+  background-color: rgb(244, 248, 250);
+}
+
+.new-arrival-slick .card:hover .list-group-item {
+  background-color: rgb(244, 248, 250);
+}

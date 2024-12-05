@@ -1,26 +1,16 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { MdKeyboardDoubleArrowRight } from "../utils/Icon";
+import "../styles/CommonButton.css";
 
-const CommonButton = () => {
+const CommonButton = ({ type, onClick }) => {
   return (
-    <div className="d-flex justify-content-center pt-3 pt-md-4">
-      <Button
-        type="button"
-        className="next-button text-decoration-none fw-bold d-grid p-0"
-        style={{
-          border: "0px",
-          background: "transparent",
-          pointerEvents: "auto",
-          opacity: 1,
-        }}
-        variant="primary"
-      >
-        <Button type="button" className="button active-btn">
-          <span className="button__text">Save</span>
-          <span className="button__icon"></span>
-        </Button>
-      </Button>
-    </div>
+    <Button type={type} onClick={onClick} className="common-button active-btn">
+      <span className="button__text">Save</span>
+      <span className="button__icon">
+        <MdKeyboardDoubleArrowRight />
+      </span>
+    </Button>
   );
 };
 

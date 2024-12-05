@@ -12,8 +12,11 @@ import Toast from "./components/Toaster";
 import Sidebar from "./components/Sidebar";
 import TopBar from "./components/TopBar";
 import "./styles/App.css";
+import { useNavigate } from "react-router-dom";
+import AutoScrollToTop from "./components/AutoScrollToTop";
 
 function App() {
+  const navigate = useNavigate();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const location = useLocation();
@@ -43,13 +46,23 @@ function App() {
     location.pathname
   );
 
+  // made this to constanstly check if the token is present at localstorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/signin");
+    }
+  }, [navigate]);
+
   return (
     <div style={{ fontFamily: "Poppins, sans-serif" }} className="d-lg-flex">
       {shouldRenderSidebarAndTopBar && isSidebarVisible && (
-        <Sidebar
-          isCollapsed={isSidebarCollapsed}
-          toggleSidebar={handleSidebarToggle}
-        />
+        <div style={{}}>
+          <Sidebar
+            isCollapsed={isSidebarCollapsed}
+            toggleSidebar={handleSidebarToggle}
+          />
+        </div>
       )}
 
       <div
@@ -75,6 +88,7 @@ function App() {
         }}
       >
         {shouldRenderSidebarAndTopBar && <TopBar />}
+        <AutoScrollToTop />
         <Toast />
         <Routes>
           {publicRoutes.map((route, idx) => (

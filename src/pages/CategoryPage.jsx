@@ -16,6 +16,7 @@ const CategoryPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector(selectCategoyData);
+  const formatLabel = (label) => label.replace(/'/g, "").replace(/\s+/g, "-");
 
   useEffect(() => {
     dispatch(fetchCategoryData());
@@ -146,7 +147,7 @@ const CategoryPage = () => {
                         borderRadius: "0.5rem",
                       }}
                       onClick={() =>
-                        navigate(`/subcategory/${category.value}`, {
+                        navigate(`/category/${formatLabel(category.label)}`, {
                           state: { category },
                         })
                       }

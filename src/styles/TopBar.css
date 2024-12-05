@@ -83,6 +83,29 @@
   overflow-y: scroll;
   z-index: 9;
 }
+.top-bar .list-div .topbar-menu-list ::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.top-bar .list-div .topbar-menu-list ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.top-bar .list-div .topbar-menu-list ::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+.top-bar .list-div .topbar-menu-list::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
+
+
+
 .top-bar .list-div .topbar-menu-list li {
   border: 1px solid #efe9e9;
   display: flex;

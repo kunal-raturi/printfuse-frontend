@@ -12,8 +12,16 @@ export const publicRoutes = [
     path: "/product-listing/:id",
     component: <ProductListingPage />,
   },
-  { path: "/product-detail/:id", component: <ProductDetailPage /> },
-  { path: "/subcategory/:id", component: <SubCategorySection /> },
+  {
+    path: "/category/:categoryLabel/:subcategoryLabel",
+    component: <ProductListingPage />,
+  },
+  {
+    path: "/product-detail/:id",
+    component: <ProductDetailPage />,
+  },
+
+  { path: "/category/:categoryLabel", component: <SubCategorySection /> },
   { path: "/signin", component: <Login /> },
   { path: "/signup", component: <Registration /> },
   { path: "/store-setting", component: <StoreSetting /> },

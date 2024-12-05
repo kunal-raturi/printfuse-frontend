@@ -23,9 +23,22 @@ import { LuClipboardList } from "react-icons/lu";
 import { HiOutlineClipboardList } from "react-icons/hi";
 import { SiReacthookform } from "react-icons/si";
 import { PiArrowsOutLineVerticalLight } from "react-icons/pi";
-
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaPinterest } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 export {
+  MdKeyboardDoubleArrowRight,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaPinterest,
+  FaTwitter,
+  FaWhatsapp,
   PiArrowsOutLineVerticalLight,
   SiReacthookform,
   HiOutlineClipboardList,

@@ -8,16 +8,22 @@ import { FaChevronCircleRight } from "react-icons/fa";
 import { Button, Col, Container, Row, Card, ListGroup } from "react-bootstrap";
 // import { NewArrivalData } from "../data/NewArrivalData";
 import "../styles/NewArrivalSlick.css";
+import { useNavigate } from "react-router-dom";
 
 function NewArrivalSlick({ NewArrivalData }) {
+  const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
 
   const handleMouseEnter = (id) => {
-    setHoveredCard(id);
+    setTimeout(() => {
+      setHoveredCard(id);
+    }, 300);
   };
 
   const handleMouseLeave = () => {
-    setHoveredCard(null);
+    setTimeout(() => {
+      setHoveredCard(null);
+    }, 300);
   };
   let sliderRef = useRef(null);
   const next = () => {
@@ -86,22 +92,23 @@ function NewArrivalSlick({ NewArrivalData }) {
                     className="border-0 card"
                     onMouseEnter={() => handleMouseEnter(item.id)}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate(`/product-detail/${item.id}`)}
                   >
                     <Card.Img
                       variant="top"
-                      className=" card-image"
+                      className=" card-image "
                       src={
                         hoveredCard === item.id
                           ? item.thumbnailSlide
                           : item.thumbnail
                       }
                     />
-                    <Card.Body className="pb-0">
+                    <Card.Body className="pb-0 card-body">
                       <Card.Title className="text-black">
-                        {item.name}
+                        <h5> {item.name}</h5>
                       </Card.Title>
                     </Card.Body>
-                    <ListGroup className="list-group-flush border-0">
+                    <ListGroup className="list-group-flush border-0 list-group">
                       <ListGroup.Item className="border-0 text-black fw-semibold py-0">
                         From ₹{item.productFromPrice}
                       </ListGroup.Item>
@@ -109,13 +116,17 @@ function NewArrivalSlick({ NewArrivalData }) {
                         className="border-0 py-0 "
                         style={{ color: "#12715b" }}
                       >
-                        {item.productFromPrice}% OFF
+                        <div>
+                          get for ₹
+                          {((item.productFromPrice * 80) / 100).toFixed(2)}
+                          with printfuse premium
+                        </div>
                       </ListGroup.Item>
-                      <ListGroup.Item className="border-0 text-muted py-0">
+                      <ListGroup.Item className="border-0 text-muted py-0 d-flex">
                         {Array.isArray(item.variantData) &&
                           item.variantData.length > 0 &&
                           item.variantData.map((variant) => (
-                            <p key={variant.name} className="d-flex">
+                            <p key={variant.name}>
                               {variant.total} {variant.name}
                             </p>
                           ))}

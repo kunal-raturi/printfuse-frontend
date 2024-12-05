@@ -17,7 +17,10 @@ import {
 import "../styles/Sidebar.css";
 import { useNavigate } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
-import { Button } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import axios from "axios";
+import { API_BASE_URL } from "../Constant/apiContant";
+import triggerToast from "../components/Toaster";
 
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const navigate = useNavigate();
@@ -30,6 +33,38 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
 
   const handleClickStore = () => {
     setShowStore((prevVal) => !prevVal);
+  };
+
+  const renderTooltip = (props, text) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {text}
+    </Tooltip>
+  );
+
+  const handleSignOut = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      triggerToast("error", "Token not found. Unable to sign out.");
+      return;
+    }
+
+    try {
+      await axios.get(`${API_BASE_URL}auth/signout`, {
+        headers: { token: `Bearer ${token}` },
+      });
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("storeCode");
+      localStorage.removeItem("storeId");
+      sessionStorage.clear();
+
+      triggerToast("success", "SignOut successfully");
+      setTimeout(() => navigate("/signin"), 1000);
+    } catch (error) {
+      console.error("Error during signout:", error);
+      triggerToast("error", "Error while signing out");
+    }
   };
 
   return (
@@ -139,46 +174,105 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           </div>
         )}
         <div style={{ borderBottom: "1px solid #12715b" }}></div>
-        <ul className={`menu-list mx-2 ${isCollapsed ? "collapsed" : ""}`}>
-          <li>
-            <IoHomeOutline className="fs-5 my-1" />
-            {!isCollapsed && <span>Dashboard</span>}
-          </li>
-          <li onClick={() => navigate("/category")}>
-            <i className="bi bi-diagram-3 fs-5"></i>
+        <ul
+          className={`menu-list d-flex flex-column gap-1 mx-2 ${
+            isCollapsed ? "collapsed" : ""
+          }`}
+        >
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Dashboard") : <></>}
+          >
+            <li>
+              <div>
+                <IoHomeOutline className="fs-5 my-1" />
+                {!isCollapsed && <span>Dashboard</span>}
+              </div>
+            </li>
+          </OverlayTrigger>
 
-            {!isCollapsed && <span>Category</span>}
-          </li>
-          <li>
-            <BsTag className="fs-5" />
-            {!isCollapsed && <span>My Products</span>}
-          </li>
-          <li>
-            <BsTruck className="fs-5" />
-            {!isCollapsed && <span>Orders</span>}
-          </li>
-          <li>
-            <MdCurrencyRupee className="fs-5" />
-            {!isCollapsed && <span>Wallet</span>}
-          </li>
-          <li>
-            <BsBagHeartFill className="fs-5" />
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Category") : <></>}
+          >
+            <li onClick={() => navigate("/category")}>
+              <i className="bi bi-diagram-3 fs-5"></i>
 
-            {!isCollapsed && <span>Branding</span>}
-          </li>
-          <li onClick={() => navigate("/store-setting")}>
-            <FiSettings className="fs-5" />
-            {!isCollapsed && <span>Store Setting</span>}
-          </li>
-          <li>
-            <BsBookmarkStar className="fs-5" />
+              {!isCollapsed && <span>Category</span>}
+            </li>
+          </OverlayTrigger>
 
-            {!isCollapsed && <span>Subscription</span>}
-          </li>
-          <li>
-            <HiOutlineQuestionMarkCircle className="fs-5" />
-            {!isCollapsed && <span>Help Center</span>}
-          </li>
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "My Products") : <></>}
+          >
+            <li>
+              <BsTag className="fs-5" />
+              {!isCollapsed && <span>My Products</span>}
+            </li>
+          </OverlayTrigger>
+
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Orders") : <></>}
+          >
+            <li>
+              <BsTruck className="fs-5" />
+              {!isCollapsed && <span>Orders</span>}
+            </li>
+          </OverlayTrigger>
+
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Wallet") : <></>}
+          >
+            <li>
+              <MdCurrencyRupee className="fs-5" />
+              {!isCollapsed && <span>Wallet</span>}
+            </li>
+          </OverlayTrigger>
+
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Branding") : <></>}
+          >
+            <li>
+              <BsBagHeartFill className="fs-5" />
+
+              {!isCollapsed && <span>Branding</span>}
+            </li>
+          </OverlayTrigger>
+
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Store Setting") : <></>}
+          >
+            <li onClick={() => navigate("/store-setting")}>
+              <FiSettings className="fs-5" />
+              {!isCollapsed && <span>Store Setting</span>}
+            </li>
+          </OverlayTrigger>
+
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Subscription") : <></>}
+          >
+            <li>
+              <BsBookmarkStar className="fs-5" />
+
+              {!isCollapsed && <span>Subscription</span>}
+            </li>
+          </OverlayTrigger>
+
+          <OverlayTrigger
+            placement="right"
+            overlay={isCollapsed ? renderTooltip({}, "Help Center") : <></>}
+          >
+            <li>
+              <HiOutlineQuestionMarkCircle className="fs-5" />
+              {!isCollapsed && <span>Help Center</span>}
+            </li>
+          </OverlayTrigger>
         </ul>
         <div style={{ borderBottom: "1px solid #12715b" }}></div>
 
@@ -217,9 +311,9 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
               Settings
             </a>
             <hr className="my-2" />
-            <a className="text-decoration-none " href="/category">
+            <div onClick={handleSignOut} style={{ cursor: "pointer" }}>
               Sign Out
-            </a>
+            </div>
           </div>
         )}
       </div>

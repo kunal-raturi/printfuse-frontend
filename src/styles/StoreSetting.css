@@ -34,8 +34,248 @@
   color: #ffffff;
 }
 
+@media screen and (max-width: 1200px) {
+  .store-tab-container.nav-fill .nav-item {
+    text-wrap: nowrap;
+  }
+
+  .store-tab-container .nav-tabs {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    font-size: 14px;
+    text-wrap: nowrap;
+  }
+  .store-tab-container ::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  /* Track */
+  .store-tab-container ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  .store-tab-container ::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 50px;
+  }
+
+  /* Handle on hover */
+  .store-tab-container::-webkit-scrollbar-thumb:hover {
+    background: black;
+  }
+}
+
 /* custom-store-detail---------------------------- */
 .custom-contain-align-center {
   background-color: #f7f7f7;
   border-radius: 1rem;
+}
+
+.swal2-actions {
+  display: flex;
+  gap: 10px; /* Adjust the gap size as needed */
+}
+.ui-checkbox .form-check-input:checked {
+  background-color: #12715b !important;
+  border-color: #12715b !important;
+  color: white !important;
+}
+
+/* change thme----------------------------------------------- */
+.change-theme .image-div {
+  aspect-ratio: 1 / 1;
+  border: 4px solid transparent;
+  border-radius: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  transition: border 0.3s ease-in-out; /* Smooth transition for border */
+}
+
+.change-theme .image-div.active {
+  border: 4px solid #000;
+}
+
+.change-theme .image-div img {
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+  transition: 0.3s;
+  width: 100%;
+}
+.change-theme .image-div img:hover {
+  opacity: 1;
+}
+
+.change-theme .image-div img.active {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.change-theme .image-div .theme-span {
+  align-items: center;
+  background-color: #ffffff80;
+  border: 1px solid #e3e4e5;
+  border-radius: 0.25rem;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 30px;
+}
+
+.change-theme .image-div .theme-span.active {
+  background-color: black;
+  color: white;
+}
+
+.change-theme .image-div .theme-span i {
+  display: none;
+}
+
+.change-theme .image-div .theme-span.active i {
+  display: block;
+}
+/* socail media -------------------------------------------------------------------------------------*/
+.social-media p {
+  font-size: 16px;
+}
+@media screen and (max-width: 576px) {
+  .social-media p {
+    font-size: 12px;
+  }
+}
+
+.left-side-div {
+  background-color: #ffffff;
+  border: 1px solid #e3e4e5;
+  border-radius: 0.5rem;
+}
+.btn-1 {
+  background-color: #12715b;
+  color: white;
+  border-color: #12715b;
+}
+.btn-1:hover {
+  background-color: #0b5ed7;
+  border-color: #0b5ed7;
+  color: white;
+}
+
+.social-media-table {
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.social-media-table {
+  border: 2px solid #e3e4e5;
+  border-collapse: collapse;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.social-media-table th,
+.social-media-table td {
+  border: 1px solid #e3e4e5;
+  padding: 8px;
+}
+
+.social-media-table tbody {
+  border: 1px solid #e3e4e5;
+}
+
+.social-media-table th {
+  background-color: #d3d3d3;
+}
+
+.status-switch .form-check-input {
+  background-color: rgba(255, 255, 255, 0.168627451);
+  border-radius: 100px;
+  padding: 1px;
+  cursor: pointer;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  align-items: center;
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 20px;
+  box-shadow: rgba(0, 0, 0, 0.62) 0px 0px 5px inset,
+    rgba(0, 0, 0, 0.21) 0px 0px 0px 24px inset, #22cc3f 0px 0px 0px 0px inset,
+    rgba(224, 224, 224, 0.45) 0px 1px 0px 0px;
+}
+
+.status-switch .form-check-input::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 13px;
+  height: 13px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.status-switch .form-check-input:checked::before {
+  transform: translateX(20px);
+}
+
+.status-switch .form-check-input:checked {
+  background-color: #22cc3f; /* Green background when checked */
+  box-shadow: rgba(0, 0, 0, 0.62) 0px 0px 5px inset,
+    #22cc3f 0px 0px 0px 2px inset, #22cc3f 0px 0px 0px 24px inset,
+    rgba(224, 224, 224, 0.45) 0px 1px 0px 0px;
+}
+
+.social-media .custom-btns i {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #e3e4e5;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  transition: 0.3s;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.social-media .custom-btns .custom-btns-edit:hover {
+  background-color: green;
+  color: white;
+}
+.social-media .custom-btns .custom-btns-delete:hover {
+  background-color: red;
+  color: white;
+}
+/* Banner--------------------------------------------------- */
+.div-for-image-banner {
+  background-color: lightgray;
+  cursor: pointer;
+  border-radius: 0.33rem;
+  overflow: hidden;
+  width: 150px;
+  height: 100px;
+}
+.div-for-image-in-table-banner {
+  height: 100px;
+  width: 150px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+.fs-14 {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 576px) {
+  .fs-sm-10 {
+    font-size: 10px;
+  }
 }

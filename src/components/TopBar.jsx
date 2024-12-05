@@ -17,6 +17,9 @@ import {
 import "../styles/TopBar.css";
 import { useNavigate } from "react-router-dom";
 import { Accordion, Form } from "react-bootstrap";
+import { triggerToast } from "./Toaster";
+import axios from "axios";
+import { API_BASE_URL } from "../Constant/apiContant";
 
 const TopBar = () => {
   const navigate = useNavigate();
@@ -40,8 +43,34 @@ const TopBar = () => {
     // Toggle active key for Accordion
   };
 
+  const handleSignOut = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      triggerToast("error", "Token not found. Unable to sign out.");
+      return;
+    }
+
+    try {
+      await axios.get(`${API_BASE_URL}auth/signout`, {
+        headers: { token: `Bearer ${token}` },
+      });
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("storeCode");
+      localStorage.removeItem("storeId");
+      sessionStorage.clear();
+
+      triggerToast("success", "SignOut successfully");
+      setTimeout(() => navigate("/signin"), 1000);
+    } catch (error) {
+      console.error("Error during signout:", error);
+      triggerToast("error", "Error while signing out");
+    }
+  };
+
   return (
-    <div className="d-flex d-lg-none top-bar">
+    <div className="d-flex d-lg-none top-bar sticky-top">
       <a className="image-container" href="/category">
         <img src="/asset/images/printfuseFullLogo.png" alt="printfuse logo" />
       </a>
@@ -130,25 +159,40 @@ const TopBar = () => {
                   <Accordion.Item eventKey="0">
                     <Accordion.Header
                       className="p-0"
-                      onClick={() => handleAccordionToggle("0")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAccordionToggle("0");
+                      }}
                     >
                       <MdAccountCircle />
                       <span style={{ marginLeft: "10px" }}> Account</span>
                     </Accordion.Header>
                     <Accordion.Body className="py-2 d-grid">
-                      <a className="text-decoration-none" href="/category">
+                      <a
+                        className="text-decoration-none text-dark"
+                        href="/category"
+                      >
                         My account
                       </a>
-                      <a className="text-decoration-none" href="/category">
+                      <a
+                        className="text-decoration-none text-dark"
+                        href="/category"
+                      >
                         My files
                       </a>
-                      <a className="text-decoration-none" href="/category">
+                      <a
+                        className="text-decoration-none text-dark"
+                        href="/category"
+                      >
                         Settings
                       </a>
                       <hr className="my-2" />
-                      <a className="text-decoration-none " href="/category">
+                      <div
+                        className="text-decoration-none text-dark"
+                        onClick={handleSignOut}
+                      >
                         Sign Out
-                      </a>
+                      </div>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>

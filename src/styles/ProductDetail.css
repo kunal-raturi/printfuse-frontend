@@ -13,3 +13,14 @@
   border: 3px solid #12715b;
   transition: 0.3s;
 }
+
+@media screen and (max-width: 768px) {
+  .left-side-col {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .left-side-col {
+    width: auto;
+  }
+}

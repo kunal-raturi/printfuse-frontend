@@ -7,7 +7,7 @@ import { FaChevronCircleLeft } from "react-icons/fa";
 import { FaChevronCircleRight } from "react-icons/fa";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { BlogData } from "../data/BlogData";
-import "../styles/CategoryPage.css"
+import "../styles/CategoryPage.css";
 
 function BlogSlick() {
   let sliderRef = useRef(null);
@@ -77,6 +77,7 @@ function BlogSlick() {
                           src={blog.img}
                           alt={blog.name}
                           className="img-fluid"
+                          style={{ objectFit: "cover" }}
                         />
                       </div>
                     </Col>

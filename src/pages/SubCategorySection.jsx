@@ -8,6 +8,7 @@ const SubCategorySection = () => {
   const { state } = useLocation();
   const data = state?.category;
   const navigate = useNavigate();
+  const formatLabel = (label) => label.replace(/'/g, "").replace(/\s+/g, "-");
   return (
     <div>
       <div className="py-3 py-lg-4 px-0 px-lg-2">
@@ -32,7 +33,14 @@ const SubCategorySection = () => {
                     <div>
                       <div
                         onClick={() =>
-                          navigate(`/product-listing/${category.value}`)
+                          navigate(
+                            `/category/${formatLabel(data.label)}/${formatLabel(
+                              category.label
+                            )}`,
+                            {
+                              state: { id: category.value },
+                            }
+                          )
                         }
                         className="d-flex text-decoration-none text-dark category-hover-effect"
                         style={{

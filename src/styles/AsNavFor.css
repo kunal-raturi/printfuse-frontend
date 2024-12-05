@@ -12,17 +12,32 @@
   background-color: #fff;
   border: 1px solid #d3d3d3;
   border-radius: 0.5rem;
-  height: 2.5rem;
+  /* height: 2.5rem; */
   width: 2.5rem;
   z-index: 99;
-  /* border-radius: 0;
+  border-radius: 0;
   height: 95%;
   top: 0;
   transform: translate(0);
-  transition: 0.3s; */
+  transition: 0.3s;
 }
+
 .nav-slick-in-productdetail .slick-prev {
   left: 0;
+}
+.nav-slick-in-productdetail .slick-next {
+  right: 0;
+}
+
+.nav-slick-in-productdetail .slick-next:before {
+  color: black;
+  font-size: 2rem;
+}
+
+.nav-slick-in-productdetail .slick-prev:before {
+  content: "←";
+  color: black;
+  font-size: 2rem;
 }
 
 .nav-slick-in-productdetail .slick-prev:hover {

@@ -3,8 +3,8 @@ export const NewArrivalData = [
     id: "1",
     thumbnail: "/asset/images/newArrivalFront.png",
     thumbnailSlide: "/asset/images/newArrivalBack.png",
-    name: "COUNT UNISEX MEN TSHIRT WITH BRAND",
-    productFromPrice: "From ₹325",
+    name: "Count Unisex Men Tshirt With Brand",
+    productFromPrice: "325",
     variantData: [
       {
         name: "size",
@@ -22,8 +22,8 @@ export const NewArrivalData = [
     id: "2",
     thumbnail: "/asset/images/newArrivalFront.png",
     thumbnailSlide: "/asset/images/newArrivalBack.png",
-    name: "COUNT UNISEX MEN TSHIRT WITH BRAND",
-    productFromPrice: "From ₹525",
+    name: "Count Unisex Men Tshirt With Brand",
+    productFromPrice: "525",
     variantData: [
       {
         name: "size",
@@ -41,8 +41,8 @@ export const NewArrivalData = [
     id: "3",
     thumbnail: "/asset/images/newArrivalFront.png",
     thumbnailSlide: "/asset/images/newArrivalBack.png",
-    name: "COUNT UNISEX MEN TSHIRT WITH BRAND",
-    productFromPrice: "From ₹245",
+    name: "Count Unisex Men Tshirt With Brand",
+    productFromPrice: "245",
     variantData: [
       {
         name: "size",
@@ -60,8 +60,8 @@ export const NewArrivalData = [
     id: "4",
     thumbnail: "/asset/images/newArrivalFront.png",
     thumbnailSlide: "/asset/images/newArrivalBack.png",
-    name: "COUNT UNISEX MEN TSHIRT WITH BRAND",
-    productFromPrice: "From ₹400",
+    name: "Count Unisex Men Tshirt With Brand",
+    productFromPrice: "400",
     variantData: [
       {
         name: "size",

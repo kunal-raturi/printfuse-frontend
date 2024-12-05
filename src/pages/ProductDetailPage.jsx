@@ -350,9 +350,14 @@ const ProductDetailPage = () => {
             </div>
           </Container>
 
-          <NewArrivalSlick
-            NewArrivalData={productDetailData.relatedProductData}
-          />
+          <Container className="px-3 px-sm-2 p-2 py-4 ">
+            <h4 className="mb-3" style={{ fontWeight: "600" }}>
+              Related Products
+            </h4>
+            <NewArrivalSlick
+              NewArrivalData={productDetailData.relatedProductData}
+            />
+          </Container>
         </div>
       </div>
     </div>

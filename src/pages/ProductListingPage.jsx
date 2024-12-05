@@ -9,6 +9,9 @@ import {
   Button,
   Card,
   ListGroup,
+  DropdownButton,
+  ButtonGroup,
+  Dropdown,
 } from "react-bootstrap";
 import ModalForFilter from "../components/ModalForFilter";
 import axios from "axios";
@@ -16,11 +19,23 @@ import { API_BASE_URL } from "../Constant/apiContant";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProductListData } from "../redux/slices/productListSlice";
 import { fetchProductListData } from "../redux/Thunk/productListThunk";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import PaginationComponent from "../components/PaginationComponent";
+
 const ProductListingPage = () => {
+  // const { categoryLabel, subcategoryLabel } = useParams();
+  const location = useLocation();
+  const { id } = location.state || {};
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
+  const dispatch = useDispatch();
+  // const { id } = useParams();
+  const data = useSelector(selectProductListData);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+  const [productFilter, setProductFilter] = useState([]);
   const handleMouseEnter = (id) => {
     setHoveredCard(id);
   };
@@ -28,16 +43,7 @@ const ProductListingPage = () => {
   const handleMouseLeave = () => {
     setHoveredCard(null);
   };
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const data = useSelector(selectProductListData);
-  console.log("data::", data);
 
-  const [showModal, setShowModal] = useState(false);
-
-  const handleShow = () => setShowModal(true);
-  const handleClose = () => setShowModal(false);
-  const [productFilter, setProductFilter] = useState([]);
   useEffect(() => {
     const requestData = [
       {
@@ -54,6 +60,7 @@ const ProductListingPage = () => {
     dispatch(fetchProductListData(requestData));
   }, [dispatch, id]);
 
+  //this useEffect is for getting filter data like color ,size ,price range
   useEffect(() => {
     const fetchproductFilter = async () => {
       const token = localStorage.getItem("token");
@@ -85,7 +92,7 @@ const ProductListingPage = () => {
             <div className="d-grid gap-2">
               <div className="d-flex justify-content-between align-items-center w-100">
                 <h4 className="fw-bold text-capitalize mb-0">
-                  <span className="fw-semibold">Search By : </span>tshirt
+                  {/* <span className="fw-semibold">Search By : </span>tshirt */}
                 </h4>
                 <div className="d-none d-sm-flex justify-content-between align-items-center gap-2">
                   <span>Sort by</span>
@@ -187,10 +194,10 @@ const ProductListingPage = () => {
                     id=""
                     className="p-2 rounded w-100 px-4 border border-muted"
                   >
-                    <option value="">Popularity</option>
-                    <option value="">latest</option>
-                    <option value="">Lowest Price</option>
-                    <option value="">Highest Price</option>
+                    <option value="popularity">Popularity</option>
+                    <option value="latest">latest</option>
+                    <option value="lowest price">Lowest Price</option>
+                    <option value="highest price">Highest Price</option>
                   </select>
                   <Button
                     style={{ backgroundColor: "white" }}
@@ -208,9 +215,9 @@ const ProductListingPage = () => {
                   />
                 </div>
               </Col>
-              <Col xs={12} sm={4} lg={3} className="px-1 ">
-                <Container fluid>
-                  <Row className="g-3">
+              <Col xs={12} sm={4} lg={9} className="px-1  left-side-col">
+                <Container>
+                  <Row className="g-3" style={{ minHeight: "83vh" }}>
                     {data?.length > 0 &&
                       data?.map((item) => (
                         <Col
@@ -232,7 +239,7 @@ const ProductListingPage = () => {
                               variant="top"
                               style={{
                                 width: "100%",
-                                // aspect-ratio: "7 / 8",  // You can keep it commented out or uncomment as needed
+                                // aspect-ratio: "7 / 8",
                                 overflow: "hidden",
                                 borderRadius: "1rem",
                                 display: "flex",
@@ -247,7 +254,10 @@ const ProductListingPage = () => {
                               }
                             />
                             <Card.Body className="pb-0">
-                              <Card.Title className="text-black">
+                              <Card.Title
+                                className="text-black fw-bold"
+                                style={{ fontSize: "18px" }}
+                              >
                                 {item.name}
                               </Card.Title>
                             </Card.Body>
@@ -259,22 +269,50 @@ const ProductListingPage = () => {
                                 className="border-0 py-0 "
                                 style={{ color: "#12715b" }}
                               >
-                                {item.memberDiscountPercentage}% OFF
+                                <div>
+                                  get for ₹
+                                  {(
+                                    (item.offeredProductPrice * 80) /
+                                    100
+                                  ).toFixed(2)}
+                                  with printfuse premium
+                                </div>
                               </ListGroup.Item>
-                              <ListGroup.Item className="border-0 text-muted py-0">
-                                {item.variantData
-                                  ?.find((v) => v.name === "size")
-                                  ?.data.join(", ")}{" "}
-                                size •{" "}
-                                {item.variantData
-                                  ?.find((v) => v.name === "color")
-                                  ?.data.join(", ")}{" "}
-                                color
+                              <ListGroup.Item className="border-0 d-flex text-muted py-0">
+                                {Array.isArray(item.variantData) &&
+                                  item.variantData.length > 0 &&
+                                  item.variantData.map((variant, index) => (
+                                    <p key={`${variant.name}-${index}`}>
+                                      {variant.total}
+                                      {variant.name}*
+                                    </p>
+                                  ))}
                               </ListGroup.Item>
                             </ListGroup>
                           </Card>
                         </Col>
                       ))}
+                    <Col xs={12} className="d-grid">
+                      <div className="d-flex justify-content-between align-items-center">
+                        <PaginationComponent />
+                        <DropdownButton
+                          as={ButtonGroup}
+                          drop="up-centered"
+                          title="10"
+                          style={{
+                            backgroundColor: "#12715b",
+                            color: "white",
+                            border: "1px solid #12715b",
+                          }}
+                        >
+                          <Dropdown.Item eventKey="1">10</Dropdown.Item>
+                          <Dropdown.Item eventKey="2">25</Dropdown.Item>
+                          <Dropdown.Item eventKey="3">50</Dropdown.Item>
+                          <Dropdown.Item eventKey="4">100</Dropdown.Item>
+                          <Dropdown.Item eventKey="4">250</Dropdown.Item>
+                        </DropdownButton>
+                      </div>
+                    </Col>
                   </Row>
                 </Container>
               </Col>

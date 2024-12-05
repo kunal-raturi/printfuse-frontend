@@ -12,14 +12,49 @@ function AsNavFor({ ImageData }) {
     setNav1(sliderRef1);
     setNav2(sliderRef2);
   }, []);
+  const mainSliderSettings = {
+    asNavFor: nav2,
+    ref: (slider) => (sliderRef1 = slider),
+    arrows: false,
+  };
+
+  const navSliderSettings = {
+    asNavFor: nav1,
+    ref: (slider) => (sliderRef2 = slider),
+    slidesToShow: 4,
+    swipeToSlide: true,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="slider-container nav-slick-in-productdetail">
       {/* Main Slider */}
       <Slider
-        arrows={false}
-        asNavFor={nav2}
-        ref={(slider) => (sliderRef1 = slider)}
+        // arrows={false}
+        // asNavFor={nav2}
+        // ref={(slider) => (sliderRef1 = slider)}
+
+        {...mainSliderSettings}
       >
         {ImageData?.length > 0 &&
           ImageData.map((image, index) => (
@@ -43,21 +78,23 @@ function AsNavFor({ ImageData }) {
 
       {/* Thumbnail Slider */}
       <Slider
-        asNavFor={nav1}
-        ref={(slider) => (sliderRef2 = slider)}
-        slidesToShow={3}
-        swipeToSlide={true}
-        focusOnSelect={true}
+        // asNavFor={nav1}
+        // ref={(slider) => (sliderRef2 = slider)}
+        // slidesToShow={4}
+        // swipeToSlide={true}
+        // focusOnSelect={true}
         style={{ height: "100px" }}
+        {...navSliderSettings}
       >
         {ImageData?.length > 0 &&
           ImageData.map((image, index) => (
             <div
-              key={`thumbnail-slider-${index}`}
+              key={` thumbnail-slider-${index}`}
+              className=" d-flex justify-content-center align-items-center"
               style={{
                 cursor: "pointer",
-                overflow: "hidden",
-                height: "100px",
+                // overflow: "hidden",
+                // height: "100px",
               }}
             >
               <img
@@ -65,9 +102,9 @@ function AsNavFor({ ImageData }) {
                 style={{
                   maxWidth: "100%",
                   maxHeight: "100%",
-                  objectFit: "contain", // Prevent cropping or distortion
-                  width: "50%",
-                  height: "auto", // Automatically adjust height based on width
+                  objectFit: "contain",
+                  width: "70%",
+                  aspectRatio: "1/1",
                 }}
                 alt="error"
               />
